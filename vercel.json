@@ -3,24 +3,29 @@
   "builds": [
     {
       "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run build:client",
+        "outputDirectory": "dist/public"
+      }
+    },
+    {
+      "src": "package.json",
       "use": "@vercel/node",
       "config": {
-        "buildCommand": "npm run build",
+        "buildCommand": "npm run build:server",
         "outputDirectory": "dist"
       }
     }
   ],
   "routes": [
     {
-      "src": "/assets/(.*)",
-      "dest": "public/assets/$1"
-    },
-    {
-      "handle": "filesystem"
+      "src": "/api/(.*)",
+      "dest": "index.cjs"
     },
     {
       "src": "/(.*)",
-      "dest": "index.cjs"
+      "dest": "public/$1"
     }
   ]
 }
