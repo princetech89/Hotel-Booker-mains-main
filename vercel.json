@@ -5,18 +5,22 @@
       "src": "package.json",
       "use": "@vercel/node",
       "config": {
-        "buildCommand": "npm run vercel-build"
+        "buildCommand": "npm run build",
+        "outputDirectory": "dist"
       }
     }
   ],
   "routes": [
     {
       "src": "/assets/(.*)",
-      "dest": "/dist/public/assets/$1"
+      "dest": "public/assets/$1"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "server/index.ts"
+      "dest": "index.cjs"
     }
   ]
 }
