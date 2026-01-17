@@ -1,0 +1,8 @@
+node_modules/
+.git/
+.replit
+drizzle.config.ts
+vite.config.ts
+vite-plugin-meta-images.ts
+attached_assets/
+script/
